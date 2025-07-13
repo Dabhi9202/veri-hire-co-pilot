@@ -1,12 +1,222 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { 
+  Building2, 
+  Users, 
+  Eye, 
+  GraduationCap, 
+  Layers, 
+  UserCheck, 
+  Shield,
+  TrendingDown,
+  Target,
+  AlertTriangle,
+  Clock
+} from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      {/* Navigation */}
+      <nav className="bg-white border-b border-border sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2">
+              {/* Placeholder for logo - you'll need to upload logo.png */}
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">V</span>
+              </div>
+              <span className="text-xl font-bold text-foreground">VeriHire</span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" className="text-foreground hover:text-primary">
+                Sign In
+              </Button>
+              <Button>Sign Up</Button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-background to-secondary/20 py-20">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl md:text-6xl font-bold text-primary mb-4">
+            VeriHire
+          </h1>
+          <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-2">
+            The Ethical & Transparent Hiring Co-Pilot
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8">
+            Hire with confidence and integrity.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="text-lg px-8 py-6">
+              Start Hiring
+            </Button>
+            <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+              Apply for Work
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* The Problem Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              The Problem: Hiring is Broken
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              Current AI is a black box. The hiring process is plagued by inefficiency, bias, and a critical lack of trust in AI-driven solutions, leading to costly and often poor hiring decisions.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="h-full">
+              <CardContent className="p-6 flex flex-col items-center text-center h-full">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <TrendingDown className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">
+                  Inefficient & Expensive
+                </h3>
+                <p className="text-muted-foreground">
+                  Companies spend £3,700 per hire on average, with roles staying open for weeks, delaying revenue and productivity.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="h-full">
+              <CardContent className="p-6 flex flex-col items-center text-center h-full">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">
+                  Riddled with Bias
+                </h3>
+                <p className="text-muted-foreground">
+                  Unconscious bias in manual screening leads to homogenous teams and missed opportunities with diverse, high-potential candidates.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="h-full">
+              <CardContent className="p-6 flex flex-col items-center text-center h-full">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <AlertTriangle className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">
+                  The 'AI Trust Deficit'
+                </h3>
+                <p className="text-muted-foreground">
+                  99% of managers use AI, but 93% believe humans are still essential. They don't trust opaque algorithms to make critical hiring decisions.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="h-full">
+              <CardContent className="p-6 flex flex-col items-center text-center h-full">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <GraduationCap className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">
+                  Academic Integrity Crisis
+                </h3>
+                <p className="text-muted-foreground">
+                  Remote hiring has made it easier for candidates to cheat on assessments, leading to costly 'bad hires' and compromised talent pipelines.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Solution Section */}
+      <section className="py-20 bg-secondary/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              Our Solution: VeriHire
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              VeriHire is an all-in-one, AI-powered recruitment platform designed from the ground up to build trust and deliver superior hiring outcomes. We turn the 'black box' of AI into a clear, understandable co-pilot for HR professionals.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="h-full">
+              <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                  <Layers className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-semibold text-foreground mb-4">
+                  All-in-One Platform
+                </h3>
+                <p className="text-muted-foreground text-lg">
+                  From sourcing to screening to interviewing, we replace a messy, expensive tech stack with one seamless, intelligent solution.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="h-full">
+              <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                  <UserCheck className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-semibold text-foreground mb-4">
+                  Empowers, Doesn't Replace
+                </h3>
+                <p className="text-muted-foreground text-lg">
+                  Our 'co-pilot' model provides powerful data and recommendations, but keeps the human recruiter in complete control.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="h-full">
+              <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                  <Shield className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-semibold text-foreground mb-4">
+                  Built on Trust
+                </h3>
+                <p className="text-muted-foreground text-lg">
+                  Our core differentiators—Explainable AI, Ethical Proctoring, and Bias Mitigation—are designed to create confidence and integrity in the hiring process.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-primary text-primary-foreground py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+              <div className="w-8 h-8 bg-primary-foreground/20 rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">V</span>
+              </div>
+              <span className="text-xl font-bold">VeriHire</span>
+            </div>
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+              <p className="text-primary-foreground/80">
+                © 2024 VeriHire. All rights reserved.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Terms of Service
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
