@@ -29,10 +29,16 @@ const Index = () => {
               <span className="text-xl font-bold text-foreground">VeriHire</span>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" className="text-foreground hover:text-primary">
+              <Button 
+                variant="ghost" 
+                className="text-foreground hover:text-primary"
+                onClick={() => window.location.href = "/auth"}
+              >
                 Sign In
               </Button>
-              <Button>Sign Up</Button>
+              <Button onClick={() => window.location.href = "/auth"}>
+                Sign Up
+              </Button>
             </div>
           </div>
         </div>
@@ -51,10 +57,19 @@ const Index = () => {
                 VeriHire is the transparent, bias-free hiring platform that empowers HR teams with explainable AI, ensuring every decision is fair, accountable, and effective.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg px-8 py-4 h-14">
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-4 h-14"
+                  onClick={() => window.location.href = "/auth"}
+                >
                   Start Hiring
                 </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-4 h-14">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="text-lg px-8 py-4 h-14"
+                  onClick={() => window.location.href = "/auth"}
+                >
                   Apply for Work →
                 </Button>
               </div>
