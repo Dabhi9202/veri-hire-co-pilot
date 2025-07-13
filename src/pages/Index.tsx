@@ -39,24 +39,46 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-background to-secondary/20 py-20">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl md:text-6xl font-bold text-primary mb-4">
-            VeriHire
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-2">
-            The Ethical & Transparent Hiring Co-Pilot
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Hire with confidence and integrity.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8 py-6">
-              Start Hiring
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-              Apply for Work
-            </Button>
+      <section className="bg-background py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                Transform your hiring with{" "}
+                <span className="text-primary">ethical AI</span> that builds trust.
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+                VeriHire is the transparent, bias-free hiring platform that empowers HR teams with explainable AI, ensuring every decision is fair, accountable, and effective.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="text-lg px-8 py-4 h-14">
+                  Start Hiring
+                </Button>
+                <Button variant="outline" size="lg" className="text-lg px-8 py-4 h-14">
+                  Apply for Work →
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-primary/10 via-secondary/20 to-accent/10 rounded-3xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+                <div className="absolute top-8 left-8 w-32 h-20 bg-white rounded-xl shadow-lg border border-border/20 flex items-center justify-center">
+                  <div className="w-16 h-2 bg-primary/20 rounded-full"></div>
+                </div>
+                <div className="absolute top-32 right-12 w-40 h-24 bg-white rounded-xl shadow-lg border border-border/20 flex items-center justify-center">
+                  <div className="space-y-2">
+                    <div className="w-20 h-2 bg-primary/30 rounded-full"></div>
+                    <div className="w-16 h-2 bg-muted rounded-full"></div>
+                  </div>
+                </div>
+                <div className="absolute bottom-20 left-12 w-36 h-28 bg-white rounded-xl shadow-lg border border-border/20 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary rounded-full"></div>
+                </div>
+                <div className="absolute bottom-8 right-8 w-28 h-16 bg-primary/90 rounded-xl shadow-lg flex items-center justify-center">
+                  <div className="w-12 h-2 bg-white/80 rounded-full"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
