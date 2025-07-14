@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -15,17 +16,34 @@ const Auth = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    firstName: "",
+    lastName: "",
+    role: "candidate" as "candidate" | "employer",
+    companyName: ""
   });
   const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is already logged in
+    // Check if user is already logged in and redirect based on role
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
-        navigate("/dashboard");
+        // Get user profile to determine role
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('user_id', session.user.id)
+          .single();
+
+        if (profile?.role === 'candidate') {
+          navigate("/candidate-dashboard");
+        } else if (profile?.role === 'employer') {
+          navigate("/employer-dashboard");
+        } else {
+          navigate("/dashboard");
+        }
       }
     };
     checkSession();
@@ -84,16 +102,31 @@ const Auth = () => {
       return;
     }
 
+    if (formData.role === "employer" && !formData.companyName.trim()) {
+      toast({
+        variant: "destructive",
+        title: "Company name required",
+        description: "Please enter your company name.",
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
       const redirectUrl = `${window.location.origin}/dashboard`;
       
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
         options: {
-          emailRedirectTo: redirectUrl
+          emailRedirectTo: redirectUrl,
+          data: {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            role: formData.role,
+            company_name: formData.companyName
+          }
         }
       });
 
@@ -103,11 +136,25 @@ const Auth = () => {
           title: "Sign up failed",
           description: error.message,
         });
-      } else {
+      } else if (data.user && !data.session) {
         toast({
           title: "Check your email",
           description: "We've sent you a confirmation link to complete your registration.",
         });
+      } else if (data.session) {
+        // Auto sign-in successful, update profile
+        await supabase.from('profiles').update({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          role: formData.role,
+          company_name: formData.role === 'employer' ? formData.companyName : null
+        }).eq('user_id', data.user.id);
+
+        toast({
+          title: "Welcome to VeriHire!",
+          description: "Your account has been created successfully.",
+        });
+        navigate("/dashboard");
       }
     } catch (error) {
       toast({
@@ -203,6 +250,32 @@ const Auth = () => {
 
               <TabsContent value="signup" className="space-y-4">
                 <form onSubmit={handleSignUp} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="firstName">First Name</Label>
+                      <Input
+                        id="firstName"
+                        name="firstName"
+                        placeholder="First name"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        required
+                        disabled={loading}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName">Last Name</Label>
+                      <Input
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Last name"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        required
+                        disabled={loading}
+                      />
+                    </div>
+                  </div>
                   <div className="space-y-2">
                     <Label htmlFor="signup-email">Email</Label>
                     <Input
@@ -216,6 +289,32 @@ const Auth = () => {
                       disabled={loading}
                     />
                   </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="role">I am a</Label>
+                    <Select value={formData.role} onValueChange={(value) => setFormData(prev => ({ ...prev, role: value as "candidate" | "employer" }))}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select your role" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="candidate">Candidate (Looking for jobs)</SelectItem>
+                        <SelectItem value="employer">Employer (Hiring candidates)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  {formData.role === "employer" && (
+                    <div className="space-y-2">
+                      <Label htmlFor="companyName">Company Name</Label>
+                      <Input
+                        id="companyName"
+                        name="companyName"
+                        placeholder="Enter your company name"
+                        value={formData.companyName}
+                        onChange={handleInputChange}
+                        required
+                        disabled={loading}
+                      />
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <Label htmlFor="signup-password">Password</Label>
                     <div className="relative">
