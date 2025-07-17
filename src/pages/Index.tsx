@@ -13,6 +13,7 @@ import {
   AlertTriangle,
   Clock
 } from "lucide-react";
+import veriHireLogo from "@/assets/verihire-logo.png";
 
 const Index = () => {
   return (
@@ -22,11 +23,11 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              {/* Placeholder for logo - you'll need to upload logo.png */}
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">V</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">VeriHire</span>
+              <img 
+                src={veriHireLogo} 
+                alt="VeriHire" 
+                className="h-8 w-auto"
+              />
             </div>
             <div className="flex items-center space-x-4">
               <Button 
@@ -233,10 +234,11 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-primary-foreground/20 rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">V</span>
-              </div>
-              <span className="text-xl font-bold">VeriHire</span>
+              <img 
+                src={veriHireLogo} 
+                alt="VeriHire" 
+                className="h-8 w-auto brightness-0 invert"
+              />
             </div>
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
               <p className="text-primary-foreground/80">
